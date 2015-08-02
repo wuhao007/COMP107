@@ -68,20 +68,30 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // TODO 1
         // Add the code to display the appropriate greeting message. Your output message should be exactly the same as the one you see on the video with exactly the same number of spaces in the same positions.
         // The code from the previous exercise is commented and kept below for your reference
-        //switch (v.getId()) {
-
-        //case R.id.greetButton:
+        switch (v.getId()) {
+            case R.id.greetButton:
 
         // set the string being displayed by the TextView to the greeting
         // message for the friend
-        //textMessage.setText(getString(R.string.greetstring) + friendName + "!");
+                Date date = new Date();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int hour = cal.get(Calendar.HOUR_OF_DAY);
 
-        //break;
+                if (6 <= hour && hour < 12) {
+                    textMessage.setText("Good Morning " + friendName + "!");
+                } else if (12 <= hour && hour < 17) {
+                    textMessage.setText("Good Afternoon " + friendName + "!");
+                } else if (17 <= hour && hour < 21) {
+                    textMessage.setText("Good Evening " + friendName + "!");
+                } else {
+                    textMessage.setText("Good Night " + friendName + "!");
+                }
+                break;
 
-        //default:
-
-        //break;
-        //}
+            default:
+                break;
+        }
 
     }
 }
