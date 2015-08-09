@@ -28,7 +28,6 @@ public class MyArrayAdapter extends ArrayAdapter<Message> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        // TODO
         View messageView;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
