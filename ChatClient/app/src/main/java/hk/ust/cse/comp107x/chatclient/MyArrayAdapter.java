@@ -1,4 +1,4 @@
-package hk.ust.cse.comp107x.simplechatclient;
+package hk.ust.cse.comp107x.chatclient;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -22,22 +22,24 @@ public class MyArrayAdapter extends ArrayAdapter<Message> {
         this.messages = messages;
     }
 
-    // This method constructs the ListItem's view from the data obtained
-    // from the Message object. This will be called by ListView while it
-    // is being drawn.
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        // TODO
         View messageView;
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        messageView = inflater.inflate(R.layout.message, parent, false);
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        TextView msgView = (TextView) messageView.findViewById(R.id.messageTextView);
-        msgView.setText(messages.get(position).getMessage());
-        TextView timeView = (TextView) messageView.findViewById(R.id.timeTextView);
-        timeView.setText(messages.get(position).getTime());
+        // Change the layout based on who the message is from
+        if (messages.get(position).fromMe()) {
+
+            //TODO
+
+        } else {
+
+            //TODO
+            
+        }
 
         return messageView;
     }

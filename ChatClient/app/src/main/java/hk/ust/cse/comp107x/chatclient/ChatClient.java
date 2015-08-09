@@ -1,10 +1,11 @@
-package hk.ust.cse.comp107x.simplechatclient;
+package hk.ust.cse.comp107x.chatclient;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -22,6 +23,8 @@ public class ChatClient extends Activity implements View.OnClickListener {
     MyArrayAdapter mAdapter = null;
     ArrayList<Message> messages = null;
 
+    int in_index = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +36,15 @@ public class ChatClient extends Activity implements View.OnClickListener {
         messageText = (EditText) findViewById(R.id.messageText);
 
         messageList = (ListView) findViewById(R.id.messageList);
+
+        // messages = new ArrayList<String>();
         messages = new ArrayList<Message>();
+
+        // mAdapter = new ArrayAdapter<String>(this, R.layout.mymessage, R.id.mymessageTextView, messages);
         mAdapter = new MyArrayAdapter(this, messages);
 
         messageList.setAdapter((ListAdapter) mAdapter);
+
     }
 
     @Override
@@ -68,19 +76,12 @@ public class ChatClient extends Activity implements View.OnClickListener {
             case R.id.sendButton:
 
                 String messString = messageText.getText().toString();
-
-                // If the message is not empty string
                 if (!messString.equals("")) {
-
-                    // TODO
                     Message message = new Message("", messString, true, new Date());
-
                     messages.add(message);
-
                     mAdapter.notifyDataSetChanged();
-
+                    sendMessage();
                     message = null;
-
                     messageText.setText("");
 
                 }
@@ -90,5 +91,22 @@ public class ChatClient extends Activity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    public void sendMessage() {
+
+        String[] incoming = {"Hey, How's it going?",
+                "Super! Let's do lunch tomorrow",
+                "How about Mexican?",
+                "Great, I found this new place around the corner",
+                "Ok, see you at 12 then!"};
+
+        if (in_index < incoming.length) {
+            Message message = new Message("John", incoming[in_index], false,  new Date());
+            messages.add(message);
+            in_index++;
+            mAdapter.notifyDataSetChanged();
+        }
+
     }
 }
