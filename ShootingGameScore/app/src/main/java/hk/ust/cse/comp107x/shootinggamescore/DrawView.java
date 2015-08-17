@@ -1,4 +1,4 @@
-package hk.ust.cse.comp107x.shootinggame;
+package hk.ust.cse.comp107x.shootinggamescore;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -24,6 +24,8 @@ public class DrawView extends View {
     ArrayList<Explosion> explosions;
     Cannon cannon;
     AndroidGuy androidGuy;
+    Score score;
+
 
     public DrawView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,6 +41,9 @@ public class DrawView extends View {
 
         // create the falling Android Guy
         androidGuy = new AndroidGuy(Color.RED, mContext);
+
+        // TODO create a new score object with Color.BLACK color
+
 
     }
 
@@ -122,6 +127,7 @@ public class DrawView extends View {
                     explosions.add(new Explosion(Color.RED,mContext, androidGuy.getX(), androidGuy.getY()));
                     androidGuy.reset();
                     bullets.remove(i);
+                    // TODO increment score
                     break;
                 }
 
@@ -131,6 +137,7 @@ public class DrawView extends View {
                 androidGuy = null;
             }
         }
+        // TODO show the score on the screen
 
     }
 
