@@ -1,4 +1,4 @@
-package hk.ust.cse.comp107x.shootinggamesurfaceview;
+package hk.ust.cse.comp107x.shootinggamemusic;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     private int width, height;
-    private DrawViewThread drawviewthread; // reference to the background thread
+    private DrawViewThread drawviewthread;
 
     Context mContext;
 
@@ -32,7 +33,6 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
         mContext = context;
 
-        // set that the callbacks for the SurfaceView are implemented in this class
         getHolder().addCallback(this);
 
         setFocusable(true);
@@ -50,25 +50,21 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    // Called if the surface is changed
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {
 
     }
 
-    // Called when the surface is created.
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        // We start a new background thread which is used to update the canvas
         drawviewthread = new DrawViewThread(holder);
         drawviewthread.setRunning(true);
         drawviewthread.start();
 
     }
 
-    // This is called when the activity is shutdown. remove the background thread.
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
 
@@ -87,7 +83,6 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    // This is the code for the background thread.
     public class DrawViewThread extends Thread{
         private SurfaceHolder surfaceHolder;
         private boolean threadIsRunning = true;
@@ -101,10 +96,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
             threadIsRunning = running;
         }
 
-        // This method is called when the thread starts running
         public void run() {
-
-            // TODO Implement the updates to the canvas in the background thread
             Canvas canvas = null;
 
             while (threadIsRunning) {
