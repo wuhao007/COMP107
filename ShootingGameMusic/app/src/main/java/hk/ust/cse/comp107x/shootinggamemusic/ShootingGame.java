@@ -1,7 +1,6 @@
 package hk.ust.cse.comp107x.shootinggamemusic;
 
 import android.media.MediaPlayer;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +43,9 @@ public class ShootingGame extends AppCompatActivity implements View.OnClickListe
         // Create a new MediaPlayer object and initialize it. We will then start playing the
         // background music when the activity resumes, and pause it when the activity pauses.
        // TODO Create the MediaPlayer and initialize it
+        player = MediaPlayer.create(this, R.raw.braincandy);
+        player.setLooping(true);
+        play_music = true;
     }
 
     @Override
@@ -96,6 +98,8 @@ public class ShootingGame extends AppCompatActivity implements View.OnClickListe
         drawView.stopGame();
 
         // TODO Pause the music if it is playing
+        if (play_music)
+            player.pause();
 
         super.onPause();
     }
@@ -106,6 +110,8 @@ public class ShootingGame extends AppCompatActivity implements View.OnClickListe
         drawView.resumeGame();
 
         // TODO Play the music if the user expects it to be played.
+        if (play_music)
+            player.start();
 
     }
 
