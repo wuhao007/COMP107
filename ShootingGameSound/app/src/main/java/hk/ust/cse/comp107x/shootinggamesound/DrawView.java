@@ -7,7 +7,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 import java.util.ArrayList;
 
@@ -178,6 +177,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
                     bullets.remove(i);
                     // Play the explosion sound by calling the SoundEffects class
                     // TODO Generate explosion sound
+                    SoundEffects.INSTANCE.playSound(SoundEffects.SOUND_EXPLOSION);
                     break;
                 }
 

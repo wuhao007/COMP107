@@ -1,7 +1,6 @@
 package hk.ust.cse.comp107x.shootinggamesound;
 
 import android.media.MediaPlayer;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -46,6 +45,7 @@ public class ShootingGame extends AppCompatActivity implements View.OnClickListe
 
         // Set the context fo the SoundEffects singleton class
         // TODO Add context to the SoundEffects class
+        SoundEffects.INSTANCE.setContext(this);
 
     }
 
